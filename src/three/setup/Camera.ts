@@ -5,7 +5,7 @@ export class Camera extends PerspectiveCamera {
     super(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   }
 
-  public resize() {
+  public onResize() {
     this.aspect = window.innerWidth / window.innerHeight;
     this.updateProjectionMatrix();
   }

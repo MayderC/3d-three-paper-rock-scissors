@@ -15,15 +15,10 @@ export class Hand {
     if (this.model) return this.model;
     const hand = await this.loader.loadAsync("/hand.glb");
     this.model = hand.scene;
-    console.log("Hand loaded", hand.scene);
     return hand.scene;
   }
 
   public async getModel() {
     return await this.loadHand();
-  }
-
-  init() {
-    console.log("Hand initialized");
   }
 }
