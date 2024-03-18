@@ -4,12 +4,13 @@ import {
   Scene,
   AxesHelper,
   AmbientLight,
+  PerspectiveCamera,
 } from "three";
 import { Camera } from "./Camera";
 
 export class MainThree {
-  private static renderer: WebGLRenderer | null = null;
-  private static camera: Camera = new Camera();
+  public static renderer: WebGLRenderer | null = null;
+  public static camera: Camera;
 
   public static scene: Scene = new Scene();
 
@@ -27,8 +28,8 @@ export class MainThree {
     const axis = new AxesHelper(5);
     MainThree.scene.add(axis);
     MainThree.camera.position.z = 5;
-
-    const light = new AmbientLight(0xffffff, 0.5);
+    MainThree.camera.lookAt(0, 0, 0);
+    const light = new AmbientLight(0xffffff, 2);
     MainThree.scene.add(light);
     MainThree.loop();
   }
