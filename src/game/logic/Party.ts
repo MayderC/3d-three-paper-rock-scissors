@@ -10,9 +10,19 @@ export class Party {
   public clock: ClockPerRound = new ClockPerRound(4000);
   public numberOfWins: number = 3;
 
-  constructor(localPlayer: Player, remotePlayer: Player) {
+  public static instance: Party | null = null;
+
+  private constructor(localPlayer: Player, remotePlayer: Player) {
     this.localPlayer = localPlayer;
     this.remotePlayer = remotePlayer;
+  }
+
+  public static getParty(localPlayer: Player, remotePlayer: Player) {
+    if (!Party.instance) {
+      Party.instance = new Party(localPlayer, remotePlayer);
+    }
+
+    return Party.instance;
   }
 
   public getWinner(): Player | null {
