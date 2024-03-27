@@ -24,5 +24,7 @@ export const setPlayerPosition = (party: Party) => {
     party.remotePlayer.model.position.z = 0;
 
     //rotation
+
+    //party.localPlayer.model.rotation.y = Math.PI;
   }
 };

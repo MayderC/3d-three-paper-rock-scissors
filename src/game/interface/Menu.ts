@@ -8,10 +8,7 @@ export class Menu {
   private constructor() {}
 
   public static getInstance() {
-    if (!Menu.instance) {
-      Menu.instance = new Menu();
-    }
-
+    if (!Menu.instance) Menu.instance = new Menu();
     return Menu.instance;
   }
 
@@ -22,11 +19,7 @@ export class Menu {
   public async start() {
     const p1 = new Player("1", "Player 1");
     const p2 = new Player("2", "Player 2");
-
-    console.log("start");
-
     const party = Party.getParty(p1, p2);
-
     loadPlayers(party);
   }
 

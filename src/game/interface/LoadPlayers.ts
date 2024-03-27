@@ -8,8 +8,10 @@ export const loadPlayers = async (party: Party) => {
     throw new Error("Players not found in loadPlayers");
 
   const loaderHand = new Hand();
+  //TODO: Fix to load the same model for both players
+  // clone the model to have two different instances
   const hand = await loaderHand.getModel();
-  const handClone = hand.clone(true);
+  const handClone = await loaderHand.getModel();
 
   if (!handClone || !hand) throw new Error("Hand model not found");
 
@@ -20,6 +22,4 @@ export const loadPlayers = async (party: Party) => {
 
   MainThree.scene.add(party.localPlayer.model);
   MainThree.scene.add(party.remotePlayer.model);
-
-  console.log(MainThree.scene);
 };
