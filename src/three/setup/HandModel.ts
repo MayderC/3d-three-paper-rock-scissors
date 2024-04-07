@@ -1,5 +1,6 @@
 import { Object3D } from "three";
 import { Loader } from "./Loader";
+import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
 
 export class Hand {
   private loader: Loader;
@@ -32,6 +33,6 @@ export class Hand {
 
   public getModel() {
     if (!this.model) throw new Error("Model not loaded");
-    return this.model;
+    return SkeletonUtils.clone(this.model);
   }
 }

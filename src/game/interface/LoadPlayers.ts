@@ -4,21 +4,19 @@ import { setPlayerPosition } from "./PlayerPosition";
 import { MainThree } from "@/three/setup/MainThree";
 import { hiFive, POSITION, rotateModelY, sayHello } from "./Animations";
 import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
+import { Scene } from "three";
 
 export const loadPlayers = (party: Party) => {
   if (!party.localPlayer || !party.remotePlayer)
     throw new Error("Players not found in loadPlayers");
 
   const hand = MainThree.model.getModel();
-  const handClone = SkeletonUtils.clone(hand);
-  handClone.name = "handClone";
+  const handClone = MainThree.model.getModel();
 
   party.localPlayer.model = hand;
   party.remotePlayer.model = handClone;
 
   setPlayerPosition(party);
-
-  //animationTest(party.localPlayer.model);
 
   // setTimeout(() => {
   //   console.log("rotateModelY LEFT");
@@ -35,4 +33,6 @@ export const loadPlayers = (party: Party) => {
 
   MainThree.scene.add(party.localPlayer.model);
   MainThree.scene.add(party.remotePlayer.model);
+
+  console.log(MainThree.scene.children);
 };

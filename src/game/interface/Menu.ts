@@ -13,7 +13,7 @@ export class Menu {
     return Menu.instance;
   }
 
-  public async start() {
+  public start() {
     this.game.start();
   }
 
