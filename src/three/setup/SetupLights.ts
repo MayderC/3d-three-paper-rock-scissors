@@ -14,33 +14,38 @@ export class SetupLights {
     directionalLight.shadow.camera.far = 15;
 
     const left = new THREE.PointLight("#ff00ff", 16, 10);
-    left.position.set(-4, 0.5, 1);
-    left.shadow.camera.far = 15;
-    left.castShadow = true;
 
-    const mid = new THREE.PointLight("#00ffff", 16, 10);
-    mid.position.set(0, 0.5, 1);
+    const z = -3;
+    const x = 4;
+    const y = 0.5;
+
+    left.position.set(-x, y, z);
+    left.shadow.camera.far = 15;
+    left.castShadow = false;
+
+    const mid = new THREE.PointLight("#60FC96", 4, 8);
+    mid.position.set(x - x, 2, 0);
     mid.shadow.camera.far = 15;
-    mid.castShadow = true;
+    mid.castShadow = false;
 
     const right = new THREE.PointLight("#ffff00", 16, 10);
-    right.position.set(4, 0.5, 1);
+    right.position.set(x, y, z);
     right.shadow.camera.far = 15;
-    right.castShadow = true;
+    right.castShadow = false;
 
     //helpers
 
-    const arrHelper = [];
-    arrHelper.push(new THREE.PointLightHelper(left));
-    arrHelper.push(new THREE.PointLightHelper(mid));
-    arrHelper.push(new THREE.PointLightHelper(right));
+    // const arrHelper = [];
+    // arrHelper.push(new THREE.PointLightHelper(left));
+    // arrHelper.push(new THREE.PointLightHelper(mid));
+    // arrHelper.push(new THREE.PointLightHelper(right));
 
-    const cameraHelper = [];
+    //const cameraHelper = [];
     //cameraHelper.push(new THREE.CameraHelper(left.shadow.camera));
-    cameraHelper.push(new THREE.CameraHelper(mid.shadow.camera));
+    //cameraHelper.push(new THREE.CameraHelper(mid.shadow.camera));
     //cameraHelper.push(new THREE.CameraHelper(right.shadow.camera));
 
-    const helper = new THREE.CameraHelper(directionalLight.shadow.camera);
+    //const helper = new THREE.CameraHelper(directionalLight.shadow.camera);
 
     return [
       ambientLight,
@@ -48,9 +53,9 @@ export class SetupLights {
       left,
       mid,
       right,
-      helper,
-      ...arrHelper,
-      ...cameraHelper,
+      // helper,
+      // ...arrHelper,
+      // ...cameraHelper,
     ];
   }
 }

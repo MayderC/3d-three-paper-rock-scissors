@@ -2,6 +2,8 @@ import { GameState } from "./GameState";
 import { Player } from "./Player";
 import { is } from "./../../../node_modules/@babel/types/lib/index-legacy.d";
 import { ClockPerRound } from "./ClockPerRound";
+import { doAttemptWithStrategies } from "./domain/GameLogic";
+import { MovementAttempt } from "./MovementAttempt";
 
 export class Party {
   public localPlayer: Player | null = null;
@@ -17,12 +19,26 @@ export class Party {
     this.remotePlayer = remotePlayer;
   }
 
-  public static getParty(localPlayer: Player, remotePlayer: Player) {
+  public static getInstance(localPlayer: Player, remotePlayer: Player) {
     if (!Party.instance) {
       Party.instance = new Party(localPlayer, remotePlayer);
     }
 
     return Party.instance;
+  }
+
+  public static getParty() {
+    if (!Party.instance) {
+      throw new Error("Party not initialized");
+    }
+
+    return Party.instance;
+  }
+
+  public reset() {
+    this.gameState = new GameState();
+    this.localPlayer = null;
+    this.remotePlayer = null;
   }
 
   public getWinner(): Player | null {
@@ -37,7 +53,23 @@ export class Party {
     return this.gameState.getLoser();
   }
 
-  public doAttempt() {}
+  public doAttempt() {
+    const localMovement = this.localPlayer?.lastMovementAttempt?.name;
+    const remoteMovement = this.remotePlayer?.lastMovementAttempt?.name;
+
+    if (!localMovement || !remoteMovement)
+      throw new Error("Movements not found");
+
+    if (!this.localPlayer || !this.remotePlayer)
+      throw new Error("Players not found");
+
+    doAttemptWithStrategies(
+      new MovementAttempt(localMovement, this.localPlayer),
+      new MovementAttempt(remoteMovement, this.remotePlayer)
+    );
+
+    this.updatePlayerMovements();
+  }
 
   private updatePlayerMovements() {
     this.localPlayer?.movementAttempts.push(

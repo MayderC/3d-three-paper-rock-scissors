@@ -4,8 +4,6 @@ export const setPlayerPosition = (party: Party) => {
   if (!party.localPlayer?.model || !party.remotePlayer?.model)
     throw new Error("Player models not found in setPlayerPosition");
 
-  console.log("Setting player position");
-
   if (window.innerWidth < 768) {
     party.localPlayer.model.position.x = 0;
     party.localPlayer.model.position.y = 1;

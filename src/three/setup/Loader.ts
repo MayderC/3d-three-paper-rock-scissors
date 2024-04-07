@@ -1,8 +1,15 @@
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/Addons.js";
+import { LoadingManager } from "three";
+
 export class Loader extends GLTFLoader {
-  constructor() {
-    super();
+  constructor(fn: Function) {
+    const loadManager = new LoadingManager();
+
+    loadManager.onStart = () => fn(true);
+    loadManager.onLoad = () => fn(false);
+
+    super(loadManager);
 
     const dracoLoader = new DRACOLoader();
 

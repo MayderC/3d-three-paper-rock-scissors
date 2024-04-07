@@ -1,0 +1,13 @@
+.control-container {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  height: 120px;
+  top: 70vh;
+  background: red;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

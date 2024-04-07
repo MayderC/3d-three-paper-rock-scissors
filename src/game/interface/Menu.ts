@@ -1,26 +1,20 @@
-import { Party } from "../logic/Party";
-import { Player } from "../logic/Player";
-import { loadPlayers } from "./LoadPlayers";
+import { Game } from "../Game";
 
 export class Menu {
   public static instance: Menu | null = null;
+  public game: Game;
 
-  private constructor() {}
+  private constructor() {
+    this.game = new Game();
+  }
 
   public static getInstance() {
     if (!Menu.instance) Menu.instance = new Menu();
     return Menu.instance;
   }
 
-  public init() {
-    console.log("init");
-  }
-
   public async start() {
-    const p1 = new Player("1", "Player 1");
-    const p2 = new Player("2", "Player 2");
-    const party = Party.getParty(p1, p2);
-    loadPlayers(party);
+    this.game.start();
   }
 
   public end() {

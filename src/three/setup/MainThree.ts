@@ -9,34 +9,40 @@ import {
   MeshStandardMaterial,
   Mesh,
   Fog,
+  Object3D,
 } from "three";
 import { Camera } from "./Camera";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { SetupLights } from "./SetupLights";
+import { Hand } from "./HandModel";
+import { Group } from "three/examples/jsm/libs/tween.module.js";
 
 export class MainThree {
   public static renderer: WebGLRenderer | null = null;
   public static camera: Camera;
+  public static model: Hand;
 
   public static scene: Scene = new Scene();
 
   private constructor() {}
 
-  public static async init() {
+  public static async init(fn: Function) {
     MainThree.setRender();
     MainThree.onResize();
+
     if (!MainThree.renderer) return;
+
+    MainThree.model = new Hand(fn);
+    await MainThree.model.loadHand();
 
     MainThree.renderer.shadowMap.enabled = true;
     MainThree.renderer.shadowMap.type = PCFSoftShadowMap;
     MainThree.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    const axis = new AxesHelper(5);
-    MainThree.scene.add(axis);
     MainThree.camera.position.z = 5;
     MainThree.camera.lookAt(0, 0, 0);
 
-    //MainThree.setFog();
+    MainThree.setFog();
     MainThree.setLights();
     MainThree.setPlane();
     MainThree.setOrbitControls();
