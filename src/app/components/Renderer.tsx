@@ -42,7 +42,9 @@ const Renderer = () => {
         <LoadingAnimation />
       </div>
       <canvas id="three"></canvas>
-      <Control party={party!}></Control>
+      <div className="game-interface">
+        <Control party={party!}></Control>
+      </div>
     </main>
   );
 };
