@@ -4,10 +4,11 @@ import { Menu } from "@/game/interface/Menu";
 import { Camera } from "@/three/setup/Camera";
 import { MainThree } from "@/three/setup/MainThree";
 import { useEffect, useState } from "react";
-import { Control } from "./control/Control";
 import { Party } from "@/game/logic/Party";
 import { useRef } from "react";
 import LoadingAnimation from "./LoadingAnimation";
+import { InterfaceView } from "./interface/InterfaceView";
+import { Control } from "./interface/control/Control";
 
 const Renderer = () => {
   const [party, setParty] = useState<Party | null>(null);
@@ -43,6 +44,7 @@ const Renderer = () => {
       </div>
       <canvas id="three"></canvas>
       <div className="game-interface">
+        <InterfaceView party={party!} />
         <Control party={party!}></Control>
       </div>
     </main>

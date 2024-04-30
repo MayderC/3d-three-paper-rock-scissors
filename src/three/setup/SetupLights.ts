@@ -51,7 +51,7 @@ export class SetupLights {
       ambientLight,
       directionalLight,
       left,
-      mid,
+      //mid,
       right,
       // helper,
       // ...arrHelper,

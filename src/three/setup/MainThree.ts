@@ -29,7 +29,6 @@ export class MainThree {
   public static async init(fn: Function) {
     MainThree.setRender();
     MainThree.onResize();
-
     if (!MainThree.renderer) return;
 
     MainThree.model = new Hand(fn);

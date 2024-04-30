@@ -2,7 +2,7 @@ import { Game } from "../Game";
 
 export class Menu {
   public static instance: Menu | null = null;
-  public game: Game;
+  private game: Game;
 
   private constructor() {
     this.game = new Game();
