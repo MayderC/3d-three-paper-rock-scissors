@@ -14,6 +14,7 @@ const Renderer = () => {
   const [party, setParty] = useState<Party | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const refLoad = useRef<HTMLDivElement | null>(null);
+  const [move, setMove] = useState<string>("");
 
   useEffect(() => {
     if (!loading) refLoad.current?.classList.add("hidden");
@@ -44,8 +45,8 @@ const Renderer = () => {
       </div>
       <canvas id="three"></canvas>
       <div className="game-interface">
-        <InterfaceView party={party!} />
-        <Control party={party!}></Control>
+        <InterfaceView move={move} party={party!} />
+        <Control setMove={setMove} party={party!}></Control>
       </div>
     </main>
   );

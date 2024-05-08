@@ -2,14 +2,10 @@ import {
   WebGLRenderer,
   PCFSoftShadowMap,
   Scene,
-  AxesHelper,
-  AmbientLight,
-  PerspectiveCamera,
   PlaneGeometry,
   MeshStandardMaterial,
   Mesh,
   Fog,
-  Object3D,
 } from "three";
 import { Camera } from "./Camera";
 import { OrbitControls } from "three/examples/jsm/Addons.js";

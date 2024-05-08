@@ -2,11 +2,23 @@
 import React, { MouseEventHandler } from "react";
 import Image from "next/image";
 
-const Option = ({ fn }: { fn: MouseEventHandler<HTMLDivElement> }) => {
+const Option = ({
+  fn,
+  src,
+}: {
+  fn: MouseEventHandler<HTMLDivElement>;
+  src: string;
+}) => {
   return (
     <>
       <div onClick={fn}>
-        <Image src="/images/option.png" alt="option" width={500} height={500} />
+        <Image
+          className="option"
+          src={`/${src}`}
+          alt={src.split(".")[0]}
+          width={500}
+          height={500}
+        />
       </div>
     </>
   );

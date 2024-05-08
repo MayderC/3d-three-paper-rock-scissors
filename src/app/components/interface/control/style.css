@@ -1,6 +1,17 @@
 .control-container {
-  background: red;
+  background: rgb(219, 82, 235);
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.option {
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 200px;
+  width: 140px;
+  overflow: hidden;
 }
