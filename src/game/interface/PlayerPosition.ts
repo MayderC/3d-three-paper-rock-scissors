@@ -13,13 +13,13 @@ export const setPlayerPosition = (party: Party) => {
     party.remotePlayer.model.position.y = -1;
     party.remotePlayer.model.position.z = 0;
   } else {
-    party.localPlayer.model.position.x = -3;
-    party.localPlayer.model.position.y = -1;
-    party.localPlayer.model.position.z = 0;
+    party.localPlayer.model.position.x = -1;
+    party.localPlayer.model.position.y = -4.5;
+    party.localPlayer.model.position.z = 1;
 
-    party.remotePlayer.model.position.x = 3;
-    party.remotePlayer.model.position.y = -1;
-    party.remotePlayer.model.position.z = 0;
+    party.remotePlayer.model.position.x = 6.4;
+    party.remotePlayer.model.position.y = -4.5;
+    party.remotePlayer.model.position.z = 1;
 
     //rotation
 

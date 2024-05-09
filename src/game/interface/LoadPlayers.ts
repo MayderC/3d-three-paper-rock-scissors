@@ -2,34 +2,26 @@ import { Hand } from "@/three/setup/HandModel";
 import { Party } from "../logic/Party";
 import { setPlayerPosition } from "./PlayerPosition";
 import { MainThree } from "@/three/setup/MainThree";
-import { hiFive, POSITION, rotateModelY, sayHello } from "./Animations";
+import { attemptAnimation, POSITION, rotateModelY, sayHello } from "./Animations";
 import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
-import { Scene } from "three";
+import { Object3D, Scene } from "three";
 
 export const loadPlayers = (party: Party) => {
   if (!party.localPlayer || !party.remotePlayer)
     throw new Error("Players not found in loadPlayers");
 
   const hand = MainThree.model.getModel();
-  const handClone = MainThree.model.getModel();
+  
 
-  party.localPlayer.model = hand;
-  party.remotePlayer.model = handClone;
+  hand.rotation.y = 0
 
+  party.localPlayer.model = hand
+  party.remotePlayer.model = SkeletonUtils.clone(hand);
   setPlayerPosition(party);
 
-  // setTimeout(() => {
-  //   console.log("rotateModelY LEFT");
-  //   if (party.remotePlayer?.model && party.localPlayer?.model) {
-  //     rotateModelY(party.remotePlayer.model, POSITION.RIGHT);
-  //     rotateModelY(party.localPlayer.model, POSITION.LEFT);
-  //     sayHello(party.remotePlayer.model, 1);
-  //     sayHello(party.localPlayer.model, -1, () => {
-  //       if (party?.remotePlayer?.model && party?.localPlayer?.model)
-  //         hiFive(party.localPlayer.model, party.remotePlayer.model);
-  //     });
-  //   }
-  // }, 1000);
+  sayHello(party.localPlayer.model, 0);
+  sayHello(party.remotePlayer.model, 200);
+
 
   MainThree.scene.add(party.localPlayer.model);
   MainThree.scene.add(party.remotePlayer.model);

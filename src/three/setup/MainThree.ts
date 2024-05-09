@@ -6,17 +6,18 @@ import {
   MeshStandardMaterial,
   Mesh,
   Fog,
+  AnimationClip,
 } from "three";
 import { Camera } from "./Camera";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { SetupLights } from "./SetupLights";
 import { Hand } from "./HandModel";
-import { Group } from "three/examples/jsm/libs/tween.module.js";
 
 export class MainThree {
   public static renderer: WebGLRenderer | null = null;
   public static camera: Camera;
   public static model: Hand;
+  public static animations: AnimationClip[] = [];
 
   public static scene: Scene = new Scene();
 
@@ -29,6 +30,8 @@ export class MainThree {
 
     MainThree.model = new Hand(fn);
     await MainThree.model.loadHand();
+
+    MainThree.animations = MainThree.model.getAnimations()
 
     MainThree.renderer.shadowMap.enabled = true;
     MainThree.renderer.shadowMap.type = PCFSoftShadowMap;

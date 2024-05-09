@@ -1,4 +1,4 @@
-import { Object3D } from "three";
+import { AnimationClip, Object3D } from "three";
 import { Loader } from "./Loader";
 import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
 
@@ -6,9 +6,11 @@ export class Hand {
   private loader: Loader;
   private model: Object3D | null = null;
   private isShadowCaster: boolean = true;
+  private animations : AnimationClip[];
 
   constructor(fn: Function) {
     this.loader = new Loader(fn);
+    this.animations = [];
   }
 
   private setShadowCaster() {
@@ -25,8 +27,12 @@ export class Hand {
       return this.model;
     }
     console.log("Loading hand model");
-    const hand = await this.loader.loadAsync("/hand.glb");
+    const hand = await this.loader.loadAsync("/hands_low_poly2.glb");
+
+    this.animations = hand.animations;
     this.model = hand.scene;
+    this.model.scale.set(4.5, 4.5, 4.5);
+    this.model.rotation.y = Math.PI / 90;
     this.setShadowCaster();
     return this.model;
   }
@@ -34,5 +40,9 @@ export class Hand {
   public getModel() {
     if (!this.model) throw new Error("Model not loaded");
     return SkeletonUtils.clone(this.model);
+  }
+
+  public getAnimations() {
+    return this.animations;
   }
 }
