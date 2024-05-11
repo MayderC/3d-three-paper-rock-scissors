@@ -1,24 +1,30 @@
 import { Menu } from '@/game/interface/Menu'
 import './style.css'
 import { Party } from "@/game/logic/Party"
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-const audio = new Audio("/confirm.wav");
+
 
 interface MainMenuProps {
-  party:  Party
+  party: Party
   menu: Menu
 }
 
-export const MainMenu = ({party, menu} : MainMenuProps) => {
-
+export const MainMenu = ({ party, menu }: MainMenuProps) => {
+  
   const mainMenu = useRef<HTMLDivElement>(null)
-
+  const [audio, setAudio] = useState<HTMLAudioElement>(new Audio("/confirm.wav"))
+  
   const handleStart = () => {
+    if (!audio) return
     mainMenu.current?.classList.add('hidden')
     audio.play()
     menu.start()
   }
+  
+  useEffect(() => {
+    setAudio(new Audio("/confirm.wav"))
+  }, [])
 
 
   return (

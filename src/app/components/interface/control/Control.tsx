@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Option from "./Option";
 import "./style.css";
 import { Party } from "@/game/logic/Party";
 import { ALLOWED_MOVEMENTS } from "@/game/logic/constants/AllowedMovements";
 
-const audio = new Audio("/confirm.wav");
 
 interface ControlProps {
   party: Party;
@@ -12,6 +11,13 @@ interface ControlProps {
 }
 
 export const Control = ({ party, setMove }: ControlProps) => {
+
+  const [audio, setAudio] = useState<HTMLAudioElement>(new Audio("/confirm.wav"))
+
+  useEffect(() => {
+    setAudio(new Audio("/confirm.wav"))
+  }, [])
+
   const doAttemptPaper = () => {
     party.localPlayer?.setNewMovementAttempt(ALLOWED_MOVEMENTS.PAPER);
     audio.play();
