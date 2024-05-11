@@ -8,7 +8,16 @@ import { Party } from "@/game/logic/Party";
 import { useRef } from "react";
 import LoadingAnimation from "./LoadingAnimation";
 import { InterfaceView } from "./interface/InterfaceView";
-import { Control } from "./interface/control/Control";
+import dynamic from 'next/dynamic'
+
+
+const Control = dynamic(
+  () => import('./interface/control/Control').then((mod) => mod.Control),
+  { ssr: false }
+)
+
+
+
 
 const Renderer = () => {
   const [party, setParty] = useState<Party | null>(null);

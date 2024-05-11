@@ -1,11 +1,16 @@
 import { Menu } from "@/game/interface/Menu";
-import { MainMenu } from "./menu/MainMenu";
 import "./style.css";
 import { Party } from "@/game/logic/Party";
 import { useEffect, useRef } from "react";
 import { attemptAnimation } from "@/game/interface/Animations";
 import { ANIMATION_NAMES } from "@/game/logic/constants/AllowedMovements";
 import { EndMenu } from "./menu/EndMenu";
+import dynamic from 'next/dynamic'
+
+const MainMenu = dynamic(
+  () => import('./menu/MainMenu').then((mod) => mod.MainMenu),
+  { ssr: false }
+)
 
 interface InterfaceViewProps {
   party: Party;
