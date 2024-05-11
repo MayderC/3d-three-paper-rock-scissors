@@ -1,3 +1,4 @@
+"use client";
 import { Menu } from '@/game/interface/Menu'
 import './style.css'
 import { Party } from "@/game/logic/Party"
