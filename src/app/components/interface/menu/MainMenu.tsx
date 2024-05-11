@@ -3,6 +3,7 @@ import './style.css'
 import { Party } from "@/game/logic/Party"
 import { useRef } from 'react'
 
+const audio = new Audio("/confirm.wav");
 
 interface MainMenuProps {
   party:  Party
@@ -15,6 +16,7 @@ export const MainMenu = ({party, menu} : MainMenuProps) => {
 
   const handleStart = () => {
     mainMenu.current?.classList.add('hidden')
+    audio.play()
     menu.start()
   }
 

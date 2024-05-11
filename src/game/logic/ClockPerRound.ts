@@ -3,7 +3,7 @@ import { Party } from "./Party";
 
 export class ClockPerRound {
   public roundTime: number;
-  public readonly timeBetweenRounds: number = 3000;
+  public readonly timeBetweenRounds: number = 4000;
   public isbetweenRounds: boolean = false;
   private readonly step: number = 1000;
   private readonly finalTime: number = 0;
@@ -11,6 +11,7 @@ export class ClockPerRound {
   public event = new Event("chooseMovement");
   public winnerEvent = new Event("winnerPerRound");
   public endGameEvent = new Event("endGame");
+  private audio = new Audio("/select.wav");
 
 
   constructor(roundTime: number) {
@@ -41,11 +42,14 @@ export class ClockPerRound {
     document.dispatchEvent(this.event);
     let time = this.roundTime;
     tick(time);
+    this.audio.play();
     const interval = setInterval(() => {
       time -= this.step;
+      this.audio.play();
       tick(time);
       if (time === this.finalTime) {
         tick(time);
+        this.audio.play();
         callback(callbackType.FINISH);
         this.clockBewteenRounds(callback, tick);
         clearInterval(interval);

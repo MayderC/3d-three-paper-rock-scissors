@@ -92,9 +92,7 @@ export const InterfaceView = ({ party, move, menu, seconds, setMove }: Interface
         <div className="player-item player-right">
           <h3>Opponent</h3>
           {(party?.remotePlayer?.state?.winsCount ?? 0) >= 0 && <p className="wins">Wins: {party?.remotePlayer?.state.winsCount}</p>}
-          <p className="opp-move">
-            {party?.remotePlayer?.getLatestMovement()?.name}
-          </p>
+
         </div>
       </div>
       <MainMenu menu={menu} party={party} />

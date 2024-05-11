@@ -36,6 +36,9 @@ export const attemptAnimation = (model: Object3D, name: ANIMATION_NAMES | ALLOWE
   const mixer = new THREE.AnimationMixer(model);
   const action = mixer.clipAction(animationClip);
   action.loop = THREE.LoopOnce;
+
+  action.timeScale = 1 / 2;
+
   if (cb) {
     mixer.addEventListener("finished", () => {
       cb();
