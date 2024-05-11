@@ -1,3 +1,4 @@
+"use client";
 import { GameState } from "./GameState";
 import { Player } from "./Player";
 import { ClockPerRound } from "./ClockPerRound";

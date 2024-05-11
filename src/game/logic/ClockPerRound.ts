@@ -1,3 +1,4 @@
+"use client";
 import { callbackType } from "../Game";
 import { Party } from "./Party";
 
