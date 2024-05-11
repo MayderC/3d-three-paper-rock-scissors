@@ -9,7 +9,7 @@ export class Player {
   public type: PlayerType;
   public name: string = "";
   public state: PlayerState = new PlayerState();
-  public lastMovementAttempt: MovementAttempt | null = null;
+  public nextMovementAttempt: MovementAttempt | null = null;
   public movementAttempts: MovementAttempt[] = [];
   public model: Object3D | null = null;
 
@@ -20,8 +20,12 @@ export class Player {
   }
 
   public setNewMovementAttempt(movement: ALLOWED_MOVEMENTS): void {
-    console.log("Setting new movement attempt");
-    this.lastMovementAttempt = new MovementAttempt(movement, this);
-    console.log(this.lastMovementAttempt);
+    this.nextMovementAttempt = new MovementAttempt(movement, this);
   }
+
+
+  public getLatestMovement(): MovementAttempt | null {
+    return this.movementAttempts[this.movementAttempts.length - 1] || null;
+  }
+
 }

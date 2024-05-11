@@ -1,6 +1,7 @@
 .interface-view {
   width: 100%;
   font-family: "Poppins", sans-serif;
+  position: relative;
 }
 
 .player-container {
@@ -25,4 +26,34 @@
 .player-item h3 {
   font-size: 1.5rem;
   color: #fff0fd;
+}
+
+
+.player-right {
+  /*background-color: #ff6b6b;*/
+  align-items: flex-end;
+}
+
+.player-left {
+  /*background-color: #48dbfb;*/
+  align-items: flex-start;
+}
+
+
+.seconds{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+.seconds p {
+  font-size: 2rem;
+  color: #fff0fd;
+}
+
+.hidden {
+  display: none;
 }

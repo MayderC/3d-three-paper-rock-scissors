@@ -12,12 +12,14 @@ import { Camera } from "./Camera";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { SetupLights } from "./SetupLights";
 import { Hand } from "./HandModel";
+import {  ALLOWED_MOVEMENTS, ANIMATION_NAMES } from "@/game/logic/constants/AllowedMovements";
+
 
 export class MainThree {
   public static renderer: WebGLRenderer | null = null;
   public static camera: Camera;
   public static model: Hand;
-  public static animations: AnimationClip[] = [];
+  public static animations: Map<ANIMATION_NAMES | ALLOWED_MOVEMENTS, AnimationClip> = new Map();
 
   public static scene: Scene = new Scene();
 
@@ -31,7 +33,10 @@ export class MainThree {
     MainThree.model = new Hand(fn);
     await MainThree.model.loadHand();
 
-    MainThree.animations = MainThree.model.getAnimations()
+    MainThree.animations.set(ANIMATION_NAMES.HELLO, MainThree.model.getAnimations()[0]);
+    MainThree.animations.set(ANIMATION_NAMES.PAPER, MainThree.model.getAnimations()[1]);
+    MainThree.animations.set(ANIMATION_NAMES.ROCK, MainThree.model.getAnimations()[2]);
+    MainThree.animations.set(ANIMATION_NAMES.SCISSORS, MainThree.model.getAnimations()[3]);
 
     MainThree.renderer.shadowMap.enabled = true;
     MainThree.renderer.shadowMap.type = PCFSoftShadowMap;

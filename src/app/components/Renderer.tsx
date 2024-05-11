@@ -12,6 +12,8 @@ import { Control } from "./interface/control/Control";
 
 const Renderer = () => {
   const [party, setParty] = useState<Party | null>(null);
+  const [secondsPerRound, setSecondsPerRound] = useState<number>(0);
+  const [menu, setMenu] = useState<Menu | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const refLoad = useRef<HTMLDivElement | null>(null);
   const [move, setMove] = useState<string>("");
@@ -22,15 +24,17 @@ const Renderer = () => {
 
   const setLoadingHandler = (value: boolean) => setLoading(value);
 
+
+
   useEffect(() => {
     if (MainThree.renderer) return;
-
     const init = async () => {
       const cam = new Camera();
       MainThree.camera = cam;
       await MainThree.init(setLoadingHandler);
       const menu = Menu.getInstance();
-      menu.start();
+      menu.setStateSecondsHandler(setSecondsPerRound)
+      setMenu(menu);
       setParty(Party.getParty());
     };
 
@@ -45,7 +49,7 @@ const Renderer = () => {
       </div>
       <canvas id="three"></canvas>
       <div className="game-interface">
-        <InterfaceView move={move} party={party!} />
+        <InterfaceView setMove={setMove} move={move} party={party!} menu={menu!} seconds={secondsPerRound!} />
         <Control setMove={setMove} party={party!}></Control>
       </div>
     </main>

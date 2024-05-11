@@ -1,6 +1,7 @@
 import { MainThree } from "@/three/setup/MainThree";
 import { Object3D } from "three";
 import * as THREE from "three";
+import { ALLOWED_MOVEMENTS, ANIMATION_NAMES } from "../logic/constants/AllowedMovements";
 
 export const enum POSITION {
   LEFT = "left",
@@ -27,9 +28,11 @@ export const sayHello = (model: Object3D, wait: number) => {
 };
 
 
-export const attemptAnimation = (model: Object3D, pos: number = 0, wait: number =0, cb?: Function) => {
+export const attemptAnimation = (model: Object3D, name: ANIMATION_NAMES | ALLOWED_MOVEMENTS, wait: number =0, cb?: Function) => {
   
-  const animationClip = MainThree.model.getAnimations()[pos];
+  const animationClip = MainThree.animations.get(name);
+  if (!animationClip || !model) return;
+
   const mixer = new THREE.AnimationMixer(model);
   const action = mixer.clipAction(animationClip);
   action.loop = THREE.LoopOnce;

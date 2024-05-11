@@ -1,5 +1,6 @@
 import { Game } from "../Game";
 
+
 export class Menu {
   public static instance: Menu | null = null;
   private game: Game;
@@ -12,6 +13,12 @@ export class Menu {
     if (!Menu.instance) Menu.instance = new Menu();
     return Menu.instance;
   }
+
+
+  public setStateSecondsHandler(handler: Function) {
+    this.game.setStateSecondsHandler(handler);
+  }
+
 
   public start() {
     this.game.start();

@@ -1,0 +1,53 @@
+p {
+  margin: 0;
+
+}
+
+.main-menu{
+  position: absolute;
+  width: 300px;
+  background-color: blueviolet;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+.main-menu .start-btn{
+
+  background-color: rgb(255, 255, 255);
+  padding: 0.5rem 2rem;
+  color: rgb(195, 65, 152);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.main-menu p.info {
+  text-align: center;
+  font-size: 14px;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.wins{
+
+  color: rgb(246, 221, 138);
+  font-size: 1.5rem;
+}
+
+.opp-move{
+  color: white;
+  font-size: 1.5rem;
+}
