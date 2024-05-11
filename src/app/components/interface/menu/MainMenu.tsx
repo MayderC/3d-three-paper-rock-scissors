@@ -35,7 +35,7 @@ export const MainMenu = ({party, menu} : MainMenuProps) => {
 
       <p className='info info-game'>
         You have 5 seconds to choose a movement.
-        if you don't choose a movement, the game will choose a random one for you.
+        if you don&apos;t choose a movement, the game will choose a random one for you.
       </p>
 
 
