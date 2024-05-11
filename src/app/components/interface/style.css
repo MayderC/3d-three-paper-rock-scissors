@@ -40,7 +40,7 @@
 }
 
 
-.seconds{
+.seconds, .hover{
   position: absolute;
   left: 50%;
   top: 50%;
@@ -49,11 +49,17 @@
 }
 
 
-.seconds p {
+.seconds p, .winner-round p, .winner-game p {
   font-size: 2rem;
   color: #fff0fd;
 }
 
 .hidden {
   display: none;
+}
+
+
+.link{
+  text-decoration: none;
+  color: #f0c8f9;
 }

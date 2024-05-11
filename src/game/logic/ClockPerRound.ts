@@ -3,7 +3,7 @@ import { Party } from "./Party";
 
 export class ClockPerRound {
   public roundTime: number;
-  public readonly timeBetweenRounds: number = 4000;
+  public readonly timeBetweenRounds: number = 3000;
   public isbetweenRounds: boolean = false;
   private readonly step: number = 1000;
   private readonly finalTime: number = 0;

@@ -24,19 +24,18 @@ export const MainMenu = ({party, menu} : MainMenuProps) => {
   return (
     <div ref={mainMenu} className="main-menu">
       <p className='info info-winner'>
-        El primero en ganar 3 rondas es el ganador.
+        The first player to win 3 rounds wins the game.
       </p>
 
       <div className="start-btn" onClick={handleStart}>
         <p>
-          Iniciar
+          Start Game
         </p>
       </div>
 
       <p className='info info-game'>
-        Tienes 5 segundos para elegir tu movimiento
-        en cada ronda. Si no eliges a tiempo, se
-        elegirá un movimiento aleatorio por ti.
+        You have 5 seconds to choose a movement.
+        if you don't choose a movement, the game will choose a random one for you.
       </p>
 
 
